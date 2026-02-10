@@ -1,0 +1,45 @@
+# Laravel / PHP
+vendor/
+bootstrap/cache/
+
+# Laravel storage (se exceptúa logs si lo necesitas luego)
+storage/*.key
+storage/app/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+
+# Entornos
+.env
+.env.*.backup
+.phpunit.result.cache
+
+# Composer
+composer.lock
+
+# Node / Frontend
+node_modules/
+public/hot
+public/storage
+public/mix-manifest.json
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+vite.config.js.timestamp-*
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*.orig
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+entrypoint.sh
+docker-compose.override.yml
+*.log
