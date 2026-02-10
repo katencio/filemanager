@@ -1,58 +1,107 @@
-## Aplicación de Gestión de Archivos con Laravel y Docker (Apache)
+## File Management Application with Laravel
 
-Esta es una aplicación sencilla en Laravel para gestionar archivos:
+This is a simple Laravel application for managing files:
 
-- Área superior para subir archivos.
-- Listado de archivos ya subidos con opciones para **descargar** y **eliminar**.
-- Desplegada con Docker usando **PHP 8.2 + Apache** y **MySQL 8.0**.
+- Top area for uploading files.
+- List of previously uploaded files with options to **download** and **delete**.
+- Built with **Laravel** framework and **MySQL** database.
 
-### Requisitos previos
+### Prerequisites
 
-- Docker
-- Docker Compose
+- PHP >= 8.2
+- Composer
+- MySQL >= 8.0
+- Node.js and NPM (for frontend assets, if needed)
 
-### Puesta en marcha
+### Installation
 
-1. Construir e iniciar los contenedores:
+1. Clone the repository:
 
    ```bash
-   docker compose up --build
+   git clone <repository-url>
+   cd files
    ```
 
-   El script de entrada (`entrypoint.sh`) ejecutará automáticamente:
-   - Generación de `APP_KEY` si no existe
-   - Migraciones de base de datos
-   - Creación del enlace simbólico de storage
-   - Ajuste de permisos
+2. Install PHP dependencies:
 
-2. Acceder a la aplicación en el navegador:
+   ```bash
+   composer install
+   ```
+
+3. Copy the environment file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Generate application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+5. Configure your database in `.env`:
+
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+6. Run database migrations:
+
+   ```bash
+   php artisan migrate
+   ```
+
+7. Create symbolic link for storage:
+
+   ```bash
+   php artisan storage:link
+   ```
+
+8. Start the development server:
+
+   ```bash
+   php artisan serve
+   ```
+
+9. Access the application in your browser:
 
    - `http://localhost:8000`
 
-**Nota:** Si necesitas ejecutar comandos manualmente dentro del contenedor:
+### Language Support
 
-```bash
-docker compose exec app bash
-```
+The application supports two languages:
 
-### Configuración de base de datos
+- **English** (default): Access at the root URL
+- **Spanish**: Access at `/es` route
 
-Por defecto, `docker-compose.yml` define:
+Language files are located in:
+- `resources/lang/en/messages.php`: English translations
+- `resources/lang/es/messages.php`: Spanish translations
 
-- `DB_HOST=db`
-- `DB_DATABASE=laravel`
-- `DB_USERNAME=laravel`
-- `DB_PASSWORD=secret`
+You can switch languages using the language selector in the navigation bar.
 
-Asegúrate de que tu `.env` dentro del contenedor utiliza estos mismos valores.
+### Features
 
-### Estructura relevante
+- File upload with validation
+- File listing with pagination
+- File download functionality
+- File deletion with confirmation
+- Multi-language support (English/Spanish)
+- Responsive design with Bootstrap 5
 
-- `app/Models/File.php`: Modelo Eloquent para los archivos.
-- `app/Http/Controllers/FileController.php`: Controlador con lógica de subida, descarga y borrado.
-- `database/migrations/*create_files_table.php`: Migración de la tabla `files`.
-- `routes/web.php`: Rutas principales de la aplicación.
-- `resources/views/layouts/app.blade.php`: Layout base.
-- `resources/views/files/index.blade.php`: Vista principal con el formulario de subida y el listado de archivos.
+### Relevant Structure
+
+- `app/Models/File.php`: Eloquent model for files.
+- `app/Http/Controllers/FileController.php`: Controller with upload, download, and delete logic.
+- `database/migrations/*create_files_table.php`: Migration for the `files` table.
+- `routes/web.php`: Main application routes.
+- `resources/views/layouts/app.blade.php`: Base layout.
+- `resources/views/files/index.blade.php`: Main view with upload form and file listing.
 
 
