@@ -1,0 +1,19 @@
+; PHP Configuration for Large File Uploads
+; Copy this file to your PHP configuration directory or include it in your php.ini
+
+; Maximum allowed size for uploaded files
+upload_max_filesize = 100M
+
+; Maximum size of POST data that PHP will accept
+; Must be greater than upload_max_filesize
+post_max_size = 100M
+
+; Maximum execution time of each script, in seconds
+max_execution_time = 300
+
+; Maximum time in seconds a script is allowed to parse input data
+max_input_time = 300
+
+; Maximum amount of memory a script may consume
+memory_limit = 256M
+
