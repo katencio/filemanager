@@ -16,6 +16,7 @@
                                        name="file"
                                        class="form-control @error('file') is-invalid @enderror"
                                        required>
+                                <small class="form-text text-muted">{{ __('messages.max_file_size') }}</small>
                                 @error('file')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

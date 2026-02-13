@@ -17,5 +17,8 @@ return [
     'file_not_found' => 'El archivo no existe en el servidor.',
     'confirm_delete' => '¿Seguro que deseas eliminar este archivo?',
     'language' => 'Idioma',
+    'upload_limit_exceeded' => 'Límite de subida excedido. Solo puedes subir 2 archivos por minuto.',
+    'file_too_large' => 'El archivo es demasiado grande. El tamaño máximo es 100MB.',
+    'max_file_size' => 'Tamaño máximo de archivo: 100MB',
 ];
 

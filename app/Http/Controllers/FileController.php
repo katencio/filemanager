@@ -18,8 +18,17 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
+        // Verificar si el POST es demasiado grande
+        if ($request->server('CONTENT_LENGTH') > 10485760) { // 10MB en bytes
+            $route = app()->getLocale() === 'es' ? 'files.index.es' : 'files.index';
+            return redirect()->route($route)
+                ->with('error', __('messages.file_too_large'));
+        }
+
         $validated = $request->validate([
-            'file' => ['required', 'file', 'max:10240'],
+            'file' => ['required', 'file', 'max:10240'], // 10MB en kilobytes
+        ], [
+            'file.max' => __('messages.file_too_large'),
         ]);
 
         $uploadedFile = $validated['file'];
